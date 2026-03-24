@@ -1,0 +1,41 @@
+# ===== Maven / Java build outputs =====
+target/
+*.class
+*.log
+
+# Maven release / backup files
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# ===== IDE / Editor =====
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+.factorypath
+out/
+bin/
+
+# ===== OS generated files =====
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ===== Runtime / temporary =====
+tmp/
+temp/
+*.tmp
+
+# ===== Local env / secrets (recommend) =====
+.env
+.env.*
+src/main/resources/application.yml
+src/main/resources/application-*.local.yml
+resour
