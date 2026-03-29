@@ -1,3 +1,27 @@
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Linux
+*~
+
+# IDE / Editor
+.idea/
+.vscode/
+*.iml
+
+# Java / Build
+*.class
+*.log
+*.out
+target/
+build/
+
+# Test / Temp
+*.tmp
 # ===== Maven / Java build outputs =====
 target/
 *.class
