@@ -22,3 +22,6 @@ build/
 
 # Test / Temp
 *.tmp
+
+resources/
+LOCAL_RUN.md
