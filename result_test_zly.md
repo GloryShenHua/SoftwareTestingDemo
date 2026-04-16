@@ -7,15 +7,15 @@
 | 测试函数 | `src.test.java.com.demo.service.impl.UserServiceImplTest.java` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
 | -------- | -------- | -------- | -------- | ---- |
-| US-01 | **被测函数**: `findByUserID(String userID)`<br>**测试逻辑**: 触发 `testFindByUserID_WhenUserExists()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
-| US-02 | **被测函数**: `findById(int id)`<br>**测试逻辑**: 触发 `testFindById_WhenUserExists()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
-| US-03 | **被测函数**: `findByUserID(Pageable pageable)`<br>**测试逻辑**: 触发 `testFindByUserIDPageable()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
-| US-04 | **被测函数**: `checkLogin(String userID, String password)`<br>**测试逻辑**: 触发 `testCheckLogin_Success()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
-| US-05 | **被测函数**: `checkLogin(String userID, String password)`<br>**测试逻辑**: 触发 `testCheckLogin_Fail()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
-| US-06 | **被测函数**: `create(User user)`<br>**测试逻辑**: 触发 `testCreate()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
-| US-07 | **被测函数**: `delByID(int id)`<br>**测试逻辑**: 触发 `testDelByID()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
-| US-08 | **被测函数**: `updateUser(User user)`<br>**测试逻辑**: 触发 `testUpdateUser()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
-| US-09 | **被测函数**: `countUserID(String userID)`<br>**测试逻辑**: 触发 `testCountUserID()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
+| US-01 | **findByUserID**：查询存在的 UserID | 返回对应的 User 对象 | 返回预期目标对象 | 正确 |
+| US-02 | **findById**：查询存在的 ID | 返回对应的 User 对象 | 返回预期目标对象 | 正确 |
+| US-03 | **findByUserID**：分页查询非管理员用户 | 返回含有用户列表的 Page | 正确获取有效分页数据 | 正确 |
+| US-04 | **checkLogin**：用户名和密码完全匹配成功 | 返回该用户 User 对象 | 认证逻辑有效，返回指定对象 | 正确 |
+| US-05 | **checkLogin**：用户名存在但密码错误 | 返回 Null | 阻截异常流，返回Null | 正确 |
+| US-06 | **create**：传入有效 User 对象进行创建 | 返回模拟保存后的用户总记录数 | DAO存储工作流运行正常 | 正确 |
+| US-07 | **delByID**：删除存在的 ID | 调用 dao 的 deleteById | 目标路径调用成功且未抛异常 | 正确 |
+| US-08 | **updateUser**：传入修改后的 User 实体 | 触发 dao 的 save 保存逻辑 | 调用链运行无异常 | 正确 |
+| US-09 | **countUserID**：查询对应 UserID 目前的数量 | 返回校验后的记录数量整数 | 统计数字断言完全匹配 | 正确 |
 
 ### 相关代码片段
 
@@ -126,20 +126,20 @@ void testCountUserID() {
 | 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
 | -------- | -------- | -------- | -------- | ---- |
-| OS-01 | **被测函数**: `findById(int OrderID)`<br>**测试逻辑**: 触发 `testFindById()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
-| OS-02 | **被测函数**: `findDateOrder(int venueID, LocalDateTime startTime, LocalDateTime startTime2)`<br>**测试逻辑**: 触发 `testFindDateOrder()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
-| OS-03 | **被测函数**: `findUserOrder(String userID, Pageable pageable)`<br>**测试逻辑**: 触发 `testFindUserOrder()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
-| OS-04 | **被测函数**: `updateOrder(int orderID, String venueName, LocalDateTime startTime, int hours, String userID)`<br>**测试逻辑**: 触发 `testUpdateOrder()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
-| OS-05 | **被测函数**: `submit(String venueName, LocalDateTime startTime, int hours, String userID)`<br>**测试逻辑**: 触发 `testSubmit()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
-| OS-06 | **被测函数**: `delOrder(int orderID)`<br>**测试逻辑**: 触发 `testDelOrder()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
-| OS-07 | **被测函数**: `confirmOrder(int orderID)`<br>**测试逻辑**: 触发 `testConfirmOrder_Exists()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
-| OS-08 | **被测函数**: `confirmOrder(int orderID)`<br>**测试逻辑**: 触发 `testConfirmOrder_NotExists()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
-| OS-09 | **被测函数**: `finishOrder(int orderID)`<br>**测试逻辑**: 触发 `testFinishOrder_Exists()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
-| OS-10 | **被测函数**: `finishOrder(int orderID)`<br>**测试逻辑**: 触发 `testFinishOrder_NotExists()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
-| OS-11 | **被测函数**: `rejectOrder(int orderID)`<br>**测试逻辑**: 触发 `testRejectOrder_Exists()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
-| OS-12 | **被测函数**: `rejectOrder(int orderID)`<br>**测试逻辑**: 触发 `testRejectOrder_NotExists()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
-| OS-13 | **被测函数**: `findNoAuditOrder(Pageable pageable)`<br>**测试逻辑**: 触发 `testFindNoAuditOrder()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
-| OS-14 | **被测函数**: `findAuditOrder()`<br>**测试逻辑**: 触发 `testFindAuditOrder()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
+| OS-01 | **findById**：查询已存在订单ID | 返回预期 Order 对象 | 获得完整的业务实体 | 正确 |
+| OS-02 | **findDateOrder**：在给定场馆和时间区间查询 | 返回查找到的 Order 列表 | 集合获取完备 | 正确 |
+| OS-03 | **findUserOrder**：查询某特定用户的订单并分页 | 返回该用户的 Order 分页数据 | 有效触发并返回预期Page | 正确 |
+| OS-04 | **updateOrder**：修改场馆、时间等参数 | 状态更新为未审核并落表重算实付 | 计算正确且保存参数一致 | 正确 |
+| OS-05 | **submit**：提交包含有效场馆的新订单 | 验证生成的新订单被构造为对象并写入 | 成功模拟提交交互逻辑 | 正确 |
+| OS-06 | **delOrder**：删除某确定的订单ID | 清理业务逻辑有效，调用 dao | 预期被删除 | 正确 |
+| OS-07 | **confirmOrder**：确认已被提交的有效订单 | 订单状态修改为 WAIT 并更新执行 | 状态正确更替为等待 | 正确 |
+| OS-08 | **confirmOrder**：确认一个无效或空订单 | 主动向外抛出 RuntimeException | 安全特性通过测试 | 正确 |
+| OS-09 | **finishOrder**：完结处于正常状态订单 | 订单状态安全地变更为 FINISH | 流程顺利关闭 | 正确 |
+| OS-10 | **finishOrder**：对一个根本不存在的订单尝试完结 | 主动向外抛出 RuntimeException | 合法拦截错误操作 | 正确 |
+| OS-11 | **rejectOrder**：拒绝已存在的待审核订单 | 订单状态切换到 REJECT(被拒绝) | 异常路径状态流正确 | 正确 |
+| OS-12 | **rejectOrder**：试图拒绝空订单触发逻辑防御 | 主动向外抛出抛出 RuntimeException | 成功被服务阻挡 | 正确 |
+| OS-13 | **findNoAuditOrder**：获取当前未经过审核的订单分页 | 基于状态为未审核输出 Page | 拉取数据符合目标约束 | 正确 |
+| OS-14 | **findAuditOrder**：查询处于 FINISH 或 WAIT 状态订单 | 返回包含已审核的特定 Order 列表 | 复合约束过滤执行正确 | 正确 |
 
 ### 相关代码片段
 
@@ -315,8 +315,8 @@ void testFindAuditOrder() {
 | 测试函数 | `src.test.java.com.demo.service.impl.OrderVoServiceImplTest.java` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
 | -------- | -------- | -------- | -------- | ---- |
-| OVS-01 | **被测函数**: `returnOrderVoByOrderID(int orderID)`<br>**测试逻辑**: 触发 `testReturnOrderVoByOrderID()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
-| OVS-02 | **被测函数**: `returnVo(List<Order> list)`<br>**测试逻辑**: 触发 `testReturnVoList()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
+| OVS-01 | **returnOrderVoByOrderID**：传入包含关联数据的源订单ID | 返回组装含 Venue 外拓数据的 OrderVo | VO转换核心逻辑完整执行 | 正确 |
+| OVS-02 | **returnVo**：将大量源实体转换成页面显示视图 | 针对 List 内的每个元素依次触发合并并返回 | 列表长度与内容断言相等 | 正确 |
 
 ### 相关代码片段
 
