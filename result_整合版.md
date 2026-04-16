@@ -599,16 +599,24 @@ verify(newsDao).save(news);
 
 ## 5. UserServiceImpl
 
-### US-01
-
-| 测试对象 | `src.main.java.com.demo.service.impl.UserServiceImpl.java:findByUserID(String userID)` |
+| 测试对象 | `src.main.java.com.demo.service.impl.UserServiceImpl.java` |
 | -------- | ------------------------------------------------------------ |
-| 测试函数 | `src.test.java.com.demo.service.impl.UserServiceImplTest.java:testFindByUserID_WhenUserExists()` |
+| 测试函数 | `src.test.java.com.demo.service.impl.UserServiceImplTest.java` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
 | -------- | -------- | -------- | -------- | ---- |
-| US-01 | 触发 `testFindByUserID_WhenUserExists()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
+| US-01 | **被测函数**: `findByUserID(String userID)`<br>**测试逻辑**: 触发 `testFindByUserID_WhenUserExists()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
+| US-02 | **被测函数**: `findById(int id)`<br>**测试逻辑**: 触发 `testFindById_WhenUserExists()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
+| US-03 | **被测函数**: `findByUserID(Pageable pageable)`<br>**测试逻辑**: 触发 `testFindByUserIDPageable()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
+| US-04 | **被测函数**: `checkLogin(String userID, String password)`<br>**测试逻辑**: 触发 `testCheckLogin_Success()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
+| US-05 | **被测函数**: `checkLogin(String userID, String password)`<br>**测试逻辑**: 触发 `testCheckLogin_Fail()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
+| US-06 | **被测函数**: `create(User user)`<br>**测试逻辑**: 触发 `testCreate()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
+| US-07 | **被测函数**: `delByID(int id)`<br>**测试逻辑**: 触发 `testDelByID()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
+| US-08 | **被测函数**: `updateUser(User user)`<br>**测试逻辑**: 触发 `testUpdateUser()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
+| US-09 | **被测函数**: `countUserID(String userID)`<br>**测试逻辑**: 触发 `testCountUserID()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
 
-#### 相关代码片段
+### 相关代码片段
+
+#### testFindByUserID_WhenUserExists
 ```java
 // Test: testFindByUserID_WhenUserExists
 void testFindByUserID_WhenUserExists() {
@@ -620,16 +628,7 @@ void testFindByUserID_WhenUserExists() {
         verify(userDao).findByUserID("test_user");
 ```
 
-### US-02
-
-| 测试对象 | `src.main.java.com.demo.service.impl.UserServiceImpl.java:findById(int id)` |
-| -------- | ------------------------------------------------------------ |
-| 测试函数 | `src.test.java.com.demo.service.impl.UserServiceImplTest.java:testFindById_WhenUserExists()` |
-| 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| -------- | -------- | -------- | -------- | ---- |
-| US-02 | 触发 `testFindById_WhenUserExists()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
-
-#### 相关代码片段
+#### testFindById_WhenUserExists
 ```java
 // Test: testFindById_WhenUserExists
 void testFindById_WhenUserExists() {
@@ -641,16 +640,7 @@ void testFindById_WhenUserExists() {
         verify(userDao).findById(1);
 ```
 
-### US-03
-
-| 测试对象 | `src.main.java.com.demo.service.impl.UserServiceImpl.java:findByUserID(Pageable pageable)` |
-| -------- | ------------------------------------------------------------ |
-| 测试函数 | `src.test.java.com.demo.service.impl.UserServiceImplTest.java:testFindByUserIDPageable()` |
-| 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| -------- | -------- | -------- | -------- | ---- |
-| US-03 | 触发 `testFindByUserIDPageable()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
-
-#### 相关代码片段
+#### testFindByUserIDPageable
 ```java
 // Test: testFindByUserIDPageable
 void testFindByUserIDPageable() {
@@ -663,16 +653,7 @@ void testFindByUserIDPageable() {
         verify(userDao).findAllByIsadmin(0, pageable);
 ```
 
-### US-04
-
-| 测试对象 | `src.main.java.com.demo.service.impl.UserServiceImpl.java:checkLogin(String userID, String password)` |
-| -------- | ------------------------------------------------------------ |
-| 测试函数 | `src.test.java.com.demo.service.impl.UserServiceImplTest.java:testCheckLogin_Success()` |
-| 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| -------- | -------- | -------- | -------- | ---- |
-| US-04 | 触发 `testCheckLogin_Success()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
-
-#### 相关代码片段
+#### testCheckLogin_Success
 ```java
 // Test: testCheckLogin_Success
 void testCheckLogin_Success() {
@@ -684,16 +665,7 @@ void testCheckLogin_Success() {
         verify(userDao).findByUserIDAndPassword("user", "pass");
 ```
 
-### US-05
-
-| 测试对象 | `src.main.java.com.demo.service.impl.UserServiceImpl.java:checkLogin(String userID, String password)` |
-| -------- | ------------------------------------------------------------ |
-| 测试函数 | `src.test.java.com.demo.service.impl.UserServiceImplTest.java:testCheckLogin_Fail()` |
-| 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| -------- | -------- | -------- | -------- | ---- |
-| US-05 | 触发 `testCheckLogin_Fail()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
-
-#### 相关代码片段
+#### testCheckLogin_Fail
 ```java
 // Test: testCheckLogin_Fail
 void testCheckLogin_Fail() {
@@ -704,16 +676,7 @@ void testCheckLogin_Fail() {
         verify(userDao).findByUserIDAndPassword("user", "wrong");
 ```
 
-### US-06
-
-| 测试对象 | `src.main.java.com.demo.service.impl.UserServiceImpl.java:create(User user)` |
-| -------- | ------------------------------------------------------------ |
-| 测试函数 | `src.test.java.com.demo.service.impl.UserServiceImplTest.java:testCreate()` |
-| 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| -------- | -------- | -------- | -------- | ---- |
-| US-06 | 触发 `testCreate()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
-
-#### 相关代码片段
+#### testCreate
 ```java
 // Test: testCreate
 void testCreate() {
@@ -726,16 +689,7 @@ void testCreate() {
         verify(userDao).findAll();
 ```
 
-### US-07
-
-| 测试对象 | `src.main.java.com.demo.service.impl.UserServiceImpl.java:delByID(int id)` |
-| -------- | ------------------------------------------------------------ |
-| 测试函数 | `src.test.java.com.demo.service.impl.UserServiceImplTest.java:testDelByID()` |
-| 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| -------- | -------- | -------- | -------- | ---- |
-| US-07 | 触发 `testDelByID()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
-
-#### 相关代码片段
+#### testDelByID
 ```java
 // Test: testDelByID
 void testDelByID() {
@@ -743,16 +697,7 @@ void testDelByID() {
         verify(userDao).deleteById(1);
 ```
 
-### US-08
-
-| 测试对象 | `src.main.java.com.demo.service.impl.UserServiceImpl.java:updateUser(User user)` |
-| -------- | ------------------------------------------------------------ |
-| 测试函数 | `src.test.java.com.demo.service.impl.UserServiceImplTest.java:testUpdateUser()` |
-| 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| -------- | -------- | -------- | -------- | ---- |
-| US-08 | 触发 `testUpdateUser()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
-
-#### 相关代码片段
+#### testUpdateUser
 ```java
 // Test: testUpdateUser
 void testUpdateUser() {
@@ -761,16 +706,7 @@ void testUpdateUser() {
         verify(userDao).save(user);
 ```
 
-### US-09
-
-| 测试对象 | `src.main.java.com.demo.service.impl.UserServiceImpl.java:countUserID(String userID)` |
-| -------- | ------------------------------------------------------------ |
-| 测试函数 | `src.test.java.com.demo.service.impl.UserServiceImplTest.java:testCountUserID()` |
-| 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| -------- | -------- | -------- | -------- | ---- |
-| US-09 | 触发 `testCountUserID()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
-
-#### 相关代码片段
+#### testCountUserID
 ```java
 // Test: testCountUserID
 void testCountUserID() {
@@ -782,16 +718,29 @@ void testCountUserID() {
 
 ## 6. OrderServiceImpl
 
-### OS-01
-
-| 测试对象 | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:findById(int OrderID)` |
+| 测试对象 | `src.main.java.com.demo.service.impl.OrderServiceImpl.java` |
 | -------- | ------------------------------------------------------------ |
-| 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testFindById()` |
+| 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
 | -------- | -------- | -------- | -------- | ---- |
-| OS-01 | 触发 `testFindById()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
+| OS-01 | **被测函数**: `findById(int OrderID)`<br>**测试逻辑**: 触发 `testFindById()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
+| OS-02 | **被测函数**: `findDateOrder(int venueID, LocalDateTime startTime, LocalDateTime startTime2)`<br>**测试逻辑**: 触发 `testFindDateOrder()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
+| OS-03 | **被测函数**: `findUserOrder(String userID, Pageable pageable)`<br>**测试逻辑**: 触发 `testFindUserOrder()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
+| OS-04 | **被测函数**: `updateOrder(int orderID, String venueName, LocalDateTime startTime, int hours, String userID)`<br>**测试逻辑**: 触发 `testUpdateOrder()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
+| OS-05 | **被测函数**: `submit(String venueName, LocalDateTime startTime, int hours, String userID)`<br>**测试逻辑**: 触发 `testSubmit()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
+| OS-06 | **被测函数**: `delOrder(int orderID)`<br>**测试逻辑**: 触发 `testDelOrder()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
+| OS-07 | **被测函数**: `confirmOrder(int orderID)`<br>**测试逻辑**: 触发 `testConfirmOrder_Exists()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
+| OS-08 | **被测函数**: `confirmOrder(int orderID)`<br>**测试逻辑**: 触发 `testConfirmOrder_NotExists()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
+| OS-09 | **被测函数**: `finishOrder(int orderID)`<br>**测试逻辑**: 触发 `testFinishOrder_Exists()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
+| OS-10 | **被测函数**: `finishOrder(int orderID)`<br>**测试逻辑**: 触发 `testFinishOrder_NotExists()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
+| OS-11 | **被测函数**: `rejectOrder(int orderID)`<br>**测试逻辑**: 触发 `testRejectOrder_Exists()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
+| OS-12 | **被测函数**: `rejectOrder(int orderID)`<br>**测试逻辑**: 触发 `testRejectOrder_NotExists()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
+| OS-13 | **被测函数**: `findNoAuditOrder(Pageable pageable)`<br>**测试逻辑**: 触发 `testFindNoAuditOrder()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
+| OS-14 | **被测函数**: `findAuditOrder()`<br>**测试逻辑**: 触发 `testFindAuditOrder()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
 
-#### 相关代码片段
+### 相关代码片段
+
+#### testFindById
 ```java
 // Test: testFindById
 void testFindById() {
@@ -803,16 +752,7 @@ void testFindById() {
         verify(orderDao).getOne(1);
 ```
 
-### OS-02
-
-| 测试对象 | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:findDateOrder(int venueID, LocalDateTime startTime, LocalDateTime startTime2)` |
-| -------- | ------------------------------------------------------------ |
-| 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testFindDateOrder()` |
-| 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| -------- | -------- | -------- | -------- | ---- |
-| OS-02 | 触发 `testFindDateOrder()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
-
-#### 相关代码片段
+#### testFindDateOrder
 ```java
 // Test: testFindDateOrder
 void testFindDateOrder() {
@@ -826,16 +766,7 @@ void testFindDateOrder() {
         verify(orderDao).findByVenueIDAndStartTimeIsBetween(2, start, end);
 ```
 
-### OS-03
-
-| 测试对象 | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:findUserOrder(String userID, Pageable pageable)` |
-| -------- | ------------------------------------------------------------ |
-| 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testFindUserOrder()` |
-| 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| -------- | -------- | -------- | -------- | ---- |
-| OS-03 | 触发 `testFindUserOrder()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
-
-#### 相关代码片段
+#### testFindUserOrder
 ```java
 // Test: testFindUserOrder
 void testFindUserOrder() {
@@ -848,16 +779,7 @@ void testFindUserOrder() {
         verify(orderDao).findAllByUserID("u1", pageable);
 ```
 
-### OS-04
-
-| 测试对象 | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:updateOrder(int orderID, String venueName, LocalDateTime startTime, int hours, String userID)` |
-| -------- | ------------------------------------------------------------ |
-| 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testUpdateOrder()` |
-| 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| -------- | -------- | -------- | -------- | ---- |
-| OS-04 | 触发 `testUpdateOrder()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
-
-#### 相关代码片段
+#### testUpdateOrder
 ```java
 // Test: testUpdateOrder
 void testUpdateOrder() {
@@ -878,16 +800,7 @@ void testUpdateOrder() {
         verify(orderDao).save(order);
 ```
 
-### OS-05
-
-| 测试对象 | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:submit(String venueName, LocalDateTime startTime, int hours, String userID)` |
-| -------- | ------------------------------------------------------------ |
-| 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testSubmit()` |
-| 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| -------- | -------- | -------- | -------- | ---- |
-| OS-05 | 触发 `testSubmit()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
-
-#### 相关代码片段
+#### testSubmit
 ```java
 // Test: testSubmit
 void testSubmit() {
@@ -901,16 +814,7 @@ void testSubmit() {
         verify(orderDao).save(any(Order.class));
 ```
 
-### OS-06
-
-| 测试对象 | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:delOrder(int orderID)` |
-| -------- | ------------------------------------------------------------ |
-| 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testDelOrder()` |
-| 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| -------- | -------- | -------- | -------- | ---- |
-| OS-06 | 触发 `testDelOrder()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
-
-#### 相关代码片段
+#### testDelOrder
 ```java
 // Test: testDelOrder
 void testDelOrder() {
@@ -918,16 +822,7 @@ void testDelOrder() {
         verify(orderDao).deleteById(1);
 ```
 
-### OS-07
-
-| 测试对象 | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:confirmOrder(int orderID)` |
-| -------- | ------------------------------------------------------------ |
-| 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testConfirmOrder_Exists()` |
-| 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| -------- | -------- | -------- | -------- | ---- |
-| OS-07 | 触发 `testConfirmOrder_Exists()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
-
-#### 相关代码片段
+#### testConfirmOrder_Exists
 ```java
 // Test: testConfirmOrder_Exists
 void testConfirmOrder_Exists() {
@@ -938,16 +833,7 @@ void testConfirmOrder_Exists() {
         verify(orderDao).updateState(OrderService.STATE_WAIT, 1);
 ```
 
-### OS-08
-
-| 测试对象 | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:confirmOrder(int orderID)` |
-| -------- | ------------------------------------------------------------ |
-| 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testConfirmOrder_NotExists()` |
-| 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| -------- | -------- | -------- | -------- | ---- |
-| OS-08 | 触发 `testConfirmOrder_NotExists()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
-
-#### 相关代码片段
+#### testConfirmOrder_NotExists
 ```java
 // Test: testConfirmOrder_NotExists
 void testConfirmOrder_NotExists() {
@@ -956,16 +842,7 @@ void testConfirmOrder_NotExists() {
         verify(orderDao, never()).updateState(any(Integer.class), any(Integer.class));
 ```
 
-### OS-09
-
-| 测试对象 | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:finishOrder(int orderID)` |
-| -------- | ------------------------------------------------------------ |
-| 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testFinishOrder_Exists()` |
-| 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| -------- | -------- | -------- | -------- | ---- |
-| OS-09 | 触发 `testFinishOrder_Exists()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
-
-#### 相关代码片段
+#### testFinishOrder_Exists
 ```java
 // Test: testFinishOrder_Exists
 void testFinishOrder_Exists() {
@@ -976,16 +853,7 @@ void testFinishOrder_Exists() {
         verify(orderDao).updateState(OrderService.STATE_FINISH, 1);
 ```
 
-### OS-10
-
-| 测试对象 | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:finishOrder(int orderID)` |
-| -------- | ------------------------------------------------------------ |
-| 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testFinishOrder_NotExists()` |
-| 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| -------- | -------- | -------- | -------- | ---- |
-| OS-10 | 触发 `testFinishOrder_NotExists()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
-
-#### 相关代码片段
+#### testFinishOrder_NotExists
 ```java
 // Test: testFinishOrder_NotExists
 void testFinishOrder_NotExists() {
@@ -993,16 +861,7 @@ void testFinishOrder_NotExists() {
         assertThrows(RuntimeException.class, () -> orderService.finishOrder(2));
 ```
 
-### OS-11
-
-| 测试对象 | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:rejectOrder(int orderID)` |
-| -------- | ------------------------------------------------------------ |
-| 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testRejectOrder_Exists()` |
-| 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| -------- | -------- | -------- | -------- | ---- |
-| OS-11 | 触发 `testRejectOrder_Exists()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
-
-#### 相关代码片段
+#### testRejectOrder_Exists
 ```java
 // Test: testRejectOrder_Exists
 void testRejectOrder_Exists() {
@@ -1013,16 +872,7 @@ void testRejectOrder_Exists() {
         verify(orderDao).updateState(OrderService.STATE_REJECT, 1);
 ```
 
-### OS-12
-
-| 测试对象 | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:rejectOrder(int orderID)` |
-| -------- | ------------------------------------------------------------ |
-| 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testRejectOrder_NotExists()` |
-| 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| -------- | -------- | -------- | -------- | ---- |
-| OS-12 | 触发 `testRejectOrder_NotExists()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
-
-#### 相关代码片段
+#### testRejectOrder_NotExists
 ```java
 // Test: testRejectOrder_NotExists
 void testRejectOrder_NotExists() {
@@ -1030,16 +880,7 @@ void testRejectOrder_NotExists() {
         assertThrows(RuntimeException.class, () -> orderService.rejectOrder(2));
 ```
 
-### OS-13
-
-| 测试对象 | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:findNoAuditOrder(Pageable pageable)` |
-| -------- | ------------------------------------------------------------ |
-| 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testFindNoAuditOrder()` |
-| 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| -------- | -------- | -------- | -------- | ---- |
-| OS-13 | 触发 `testFindNoAuditOrder()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
-
-#### 相关代码片段
+#### testFindNoAuditOrder
 ```java
 // Test: testFindNoAuditOrder
 void testFindNoAuditOrder() {
@@ -1052,16 +893,7 @@ void testFindNoAuditOrder() {
         verify(orderDao).findAllByState(OrderService.STATE_NO_AUDIT, pageable);
 ```
 
-### OS-14
-
-| 测试对象 | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:findAuditOrder()` |
-| -------- | ------------------------------------------------------------ |
-| 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testFindAuditOrder()` |
-| 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| -------- | -------- | -------- | -------- | ---- |
-| OS-14 | 触发 `testFindAuditOrder()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
-
-#### 相关代码片段
+#### testFindAuditOrder
 ```java
 // Test: testFindAuditOrder
 void testFindAuditOrder() {
@@ -1075,16 +907,17 @@ void testFindAuditOrder() {
 
 ## 7. OrderVoServiceImpl
 
-### OVS-01
-
-| 测试对象 | `src.main.java.com.demo.service.impl.OrderVoServiceImpl.java:returnOrderVoByOrderID(int orderID)` |
+| 测试对象 | `src.main.java.com.demo.service.impl.OrderVoServiceImpl.java` |
 | -------- | ------------------------------------------------------------ |
-| 测试函数 | `src.test.java.com.demo.service.impl.OrderVoServiceImplTest.java:testReturnOrderVoByOrderID()` |
+| 测试函数 | `src.test.java.com.demo.service.impl.OrderVoServiceImplTest.java` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
 | -------- | -------- | -------- | -------- | ---- |
-| OVS-01 | 触发 `testReturnOrderVoByOrderID()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
+| OVS-01 | **被测函数**: `returnOrderVoByOrderID(int orderID)`<br>**测试逻辑**: 触发 `testReturnOrderVoByOrderID()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
+| OVS-02 | **被测函数**: `returnVo(List<Order> list)`<br>**测试逻辑**: 触发 `testReturnVoList()` 执行 | 验证交互与功能 | 验证通过 | 正确 |
 
-#### 相关代码片段
+### 相关代码片段
+
+#### testReturnOrderVoByOrderID
 ```java
 // Test: testReturnOrderVoByOrderID
 void testReturnOrderVoByOrderID() {
@@ -1110,16 +943,7 @@ void testReturnOrderVoByOrderID() {
         verify(venueDao).findByVenueID(2);
 ```
 
-### OVS-02
-
-| 测试对象 | `src.main.java.com.demo.service.impl.OrderVoServiceImpl.java:returnVo(List<Order> list)` |
-| -------- | ------------------------------------------------------------ |
-| 测试函数 | `src.test.java.com.demo.service.impl.OrderVoServiceImplTest.java:testReturnVoList()` |
-| 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| -------- | -------- | -------- | -------- | ---- |
-| OVS-02 | 触发 `testReturnVoList()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
-
-#### 相关代码片段
+#### testReturnVoList
 ```java
 // Test: testReturnVoList
 void testReturnVoList() {
