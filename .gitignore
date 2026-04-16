@@ -19,6 +19,21 @@ desktop.ini
 *.out
 target/
 build/
+dist/
+
+# Python
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
 
 # Test / Temp
 *.tmp
+
+# Environment
+.env
+src/main/resources/application.yml
+
+resources/
+LOCAL_RUN.md
