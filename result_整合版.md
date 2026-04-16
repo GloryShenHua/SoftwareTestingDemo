@@ -600,10 +600,11 @@ verify(newsDao).save(news);
 ## 5. UserServiceImpl
 
 | 测试对象 | `src.main.java.com.demo.service.impl.UserServiceImpl.java` |
-| -------- | ------------------------------------------------------------ |
+| --- | --- |
 | 测试函数 | `src.test.java.com.demo.service.impl.UserServiceImplTest.java` |
+
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| -------- | -------- | -------- | -------- | ---- |
+| --- | --- | --- | --- | --- |
 | US-01 | **findByUserID**：查询存在的 UserID | 返回对应的 User 对象 | 返回预期目标对象 | 正确 |
 | US-02 | **findById**：查询存在的 ID | 返回对应的 User 对象 | 返回预期目标对象 | 正确 |
 | US-03 | **findByUserID**：分页查询非管理员用户 | 返回含有用户列表的 Page | 正确获取有效分页数据 | 正确 |
@@ -719,10 +720,11 @@ void testCountUserID() {
 ## 6. OrderServiceImpl
 
 | 测试对象 | `src.main.java.com.demo.service.impl.OrderServiceImpl.java` |
-| -------- | ------------------------------------------------------------ |
+| --- | --- |
 | 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java` |
+
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| -------- | -------- | -------- | -------- | ---- |
+| --- | --- | --- | --- | --- |
 | OS-01 | **findById**：查询已存在订单ID | 返回预期 Order 对象 | 获得完整的业务实体 | 正确 |
 | OS-02 | **findDateOrder**：在给定场馆和时间区间查询 | 返回查找到的 Order 列表 | 集合获取完备 | 正确 |
 | OS-03 | **findUserOrder**：查询某特定用户的订单并分页 | 返回该用户的 Order 分页数据 | 有效触发并返回预期Page | 正确 |
@@ -908,10 +910,11 @@ void testFindAuditOrder() {
 ## 7. OrderVoServiceImpl
 
 | 测试对象 | `src.main.java.com.demo.service.impl.OrderVoServiceImpl.java` |
-| -------- | ------------------------------------------------------------ |
+| --- | --- |
 | 测试函数 | `src.test.java.com.demo.service.impl.OrderVoServiceImplTest.java` |
+
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| -------- | -------- | -------- | -------- | ---- |
+| --- | --- | --- | --- | --- |
 | OVS-01 | **returnOrderVoByOrderID**：传入包含关联数据的源订单ID | 返回组装含 Venue 外拓数据的 OrderVo | VO转换核心逻辑完整执行 | 正确 |
 | OVS-02 | **returnVo**：将大量源实体转换成页面显示视图 | 针对 List 内的每个元素依次触发合并并返回 | 列表长度与内容断言相等 | 正确 |
 
