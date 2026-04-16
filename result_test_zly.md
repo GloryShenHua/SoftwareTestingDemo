@@ -2,16 +2,14 @@
 
 ## 1. UserServiceImpl
 
-### US-01 : 测试 findByUserID(String userID)
+### US-01
 
-| 属性 | 对应值 |
-| --- | --- |
-| **测试对象** | `src.main.java.com.demo.service.impl.UserServiceImpl.java:findByUserID(String userID)` |
-| **测试函数** | `src.test.java.com.demo.service.impl.UserServiceImplTest.java:testFindByUserID_WhenUserExists()` |
-
+| 测试对象 | `src.main.java.com.demo.service.impl.UserServiceImpl.java:findByUserID(String userID)` |
+| -------- | ------------------------------------------------------------ |
+| 测试函数 | `src.test.java.com.demo.service.impl.UserServiceImplTest.java:testFindByUserID_WhenUserExists()` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| --- | --- | --- | --- | --- |
-| US-01 | 触发 `testFindByUserID_WhenUserExists()` 执行逻辑 | 验证状态流转与DAO调用正确 | 验证通过，DAO交互断言无异常 | 正确 |
+| -------- | -------- | -------- | -------- | ---- |
+| US-01 | 触发 `testFindByUserID_WhenUserExists()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
 
 #### 相关代码片段
 ```java
@@ -25,16 +23,14 @@ void testFindByUserID_WhenUserExists() {
         verify(userDao).findByUserID("test_user");
 ```
 
-### US-02 : 测试 findById(int id)
+### US-02
 
-| 属性 | 对应值 |
-| --- | --- |
-| **测试对象** | `src.main.java.com.demo.service.impl.UserServiceImpl.java:findById(int id)` |
-| **测试函数** | `src.test.java.com.demo.service.impl.UserServiceImplTest.java:testFindById_WhenUserExists()` |
-
+| 测试对象 | `src.main.java.com.demo.service.impl.UserServiceImpl.java:findById(int id)` |
+| -------- | ------------------------------------------------------------ |
+| 测试函数 | `src.test.java.com.demo.service.impl.UserServiceImplTest.java:testFindById_WhenUserExists()` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| --- | --- | --- | --- | --- |
-| US-02 | 触发 `testFindById_WhenUserExists()` 执行逻辑 | 验证状态流转与DAO调用正确 | 验证通过，DAO交互断言无异常 | 正确 |
+| -------- | -------- | -------- | -------- | ---- |
+| US-02 | 触发 `testFindById_WhenUserExists()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
 
 #### 相关代码片段
 ```java
@@ -48,16 +44,14 @@ void testFindById_WhenUserExists() {
         verify(userDao).findById(1);
 ```
 
-### US-03 : 测试 findByUserID(Pageable pageable)
+### US-03
 
-| 属性 | 对应值 |
-| --- | --- |
-| **测试对象** | `src.main.java.com.demo.service.impl.UserServiceImpl.java:findByUserID(Pageable pageable)` |
-| **测试函数** | `src.test.java.com.demo.service.impl.UserServiceImplTest.java:testFindByUserIDPageable()` |
-
+| 测试对象 | `src.main.java.com.demo.service.impl.UserServiceImpl.java:findByUserID(Pageable pageable)` |
+| -------- | ------------------------------------------------------------ |
+| 测试函数 | `src.test.java.com.demo.service.impl.UserServiceImplTest.java:testFindByUserIDPageable()` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| --- | --- | --- | --- | --- |
-| US-03 | 触发 `testFindByUserIDPageable()` 执行逻辑 | 验证状态流转与DAO调用正确 | 验证通过，DAO交互断言无异常 | 正确 |
+| -------- | -------- | -------- | -------- | ---- |
+| US-03 | 触发 `testFindByUserIDPageable()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
 
 #### 相关代码片段
 ```java
@@ -72,16 +66,14 @@ void testFindByUserIDPageable() {
         verify(userDao).findAllByIsadmin(0, pageable);
 ```
 
-### US-04 : 测试 checkLogin(String userID, String password)
+### US-04
 
-| 属性 | 对应值 |
-| --- | --- |
-| **测试对象** | `src.main.java.com.demo.service.impl.UserServiceImpl.java:checkLogin(String userID, String password)` |
-| **测试函数** | `src.test.java.com.demo.service.impl.UserServiceImplTest.java:testCheckLogin_Success()` |
-
+| 测试对象 | `src.main.java.com.demo.service.impl.UserServiceImpl.java:checkLogin(String userID, String password)` |
+| -------- | ------------------------------------------------------------ |
+| 测试函数 | `src.test.java.com.demo.service.impl.UserServiceImplTest.java:testCheckLogin_Success()` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| --- | --- | --- | --- | --- |
-| US-04 | 触发 `testCheckLogin_Success()` 执行逻辑 | 验证状态流转与DAO调用正确 | 验证通过，DAO交互断言无异常 | 正确 |
+| -------- | -------- | -------- | -------- | ---- |
+| US-04 | 触发 `testCheckLogin_Success()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
 
 #### 相关代码片段
 ```java
@@ -95,16 +87,14 @@ void testCheckLogin_Success() {
         verify(userDao).findByUserIDAndPassword("user", "pass");
 ```
 
-### US-05 : 测试 checkLogin(String userID, String password)
+### US-05
 
-| 属性 | 对应值 |
-| --- | --- |
-| **测试对象** | `src.main.java.com.demo.service.impl.UserServiceImpl.java:checkLogin(String userID, String password)` |
-| **测试函数** | `src.test.java.com.demo.service.impl.UserServiceImplTest.java:testCheckLogin_Fail()` |
-
+| 测试对象 | `src.main.java.com.demo.service.impl.UserServiceImpl.java:checkLogin(String userID, String password)` |
+| -------- | ------------------------------------------------------------ |
+| 测试函数 | `src.test.java.com.demo.service.impl.UserServiceImplTest.java:testCheckLogin_Fail()` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| --- | --- | --- | --- | --- |
-| US-05 | 触发 `testCheckLogin_Fail()` 执行逻辑 | 验证状态流转与DAO调用正确 | 验证通过，DAO交互断言无异常 | 正确 |
+| -------- | -------- | -------- | -------- | ---- |
+| US-05 | 触发 `testCheckLogin_Fail()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
 
 #### 相关代码片段
 ```java
@@ -117,16 +107,14 @@ void testCheckLogin_Fail() {
         verify(userDao).findByUserIDAndPassword("user", "wrong");
 ```
 
-### US-06 : 测试 create(User user)
+### US-06
 
-| 属性 | 对应值 |
-| --- | --- |
-| **测试对象** | `src.main.java.com.demo.service.impl.UserServiceImpl.java:create(User user)` |
-| **测试函数** | `src.test.java.com.demo.service.impl.UserServiceImplTest.java:testCreate()` |
-
+| 测试对象 | `src.main.java.com.demo.service.impl.UserServiceImpl.java:create(User user)` |
+| -------- | ------------------------------------------------------------ |
+| 测试函数 | `src.test.java.com.demo.service.impl.UserServiceImplTest.java:testCreate()` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| --- | --- | --- | --- | --- |
-| US-06 | 触发 `testCreate()` 执行逻辑 | 验证状态流转与DAO调用正确 | 验证通过，DAO交互断言无异常 | 正确 |
+| -------- | -------- | -------- | -------- | ---- |
+| US-06 | 触发 `testCreate()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
 
 #### 相关代码片段
 ```java
@@ -141,16 +129,14 @@ void testCreate() {
         verify(userDao).findAll();
 ```
 
-### US-07 : 测试 delByID(int id)
+### US-07
 
-| 属性 | 对应值 |
-| --- | --- |
-| **测试对象** | `src.main.java.com.demo.service.impl.UserServiceImpl.java:delByID(int id)` |
-| **测试函数** | `src.test.java.com.demo.service.impl.UserServiceImplTest.java:testDelByID()` |
-
+| 测试对象 | `src.main.java.com.demo.service.impl.UserServiceImpl.java:delByID(int id)` |
+| -------- | ------------------------------------------------------------ |
+| 测试函数 | `src.test.java.com.demo.service.impl.UserServiceImplTest.java:testDelByID()` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| --- | --- | --- | --- | --- |
-| US-07 | 触发 `testDelByID()` 执行逻辑 | 验证状态流转与DAO调用正确 | 验证通过，DAO交互断言无异常 | 正确 |
+| -------- | -------- | -------- | -------- | ---- |
+| US-07 | 触发 `testDelByID()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
 
 #### 相关代码片段
 ```java
@@ -160,16 +146,14 @@ void testDelByID() {
         verify(userDao).deleteById(1);
 ```
 
-### US-08 : 测试 updateUser(User user)
+### US-08
 
-| 属性 | 对应值 |
-| --- | --- |
-| **测试对象** | `src.main.java.com.demo.service.impl.UserServiceImpl.java:updateUser(User user)` |
-| **测试函数** | `src.test.java.com.demo.service.impl.UserServiceImplTest.java:testUpdateUser()` |
-
+| 测试对象 | `src.main.java.com.demo.service.impl.UserServiceImpl.java:updateUser(User user)` |
+| -------- | ------------------------------------------------------------ |
+| 测试函数 | `src.test.java.com.demo.service.impl.UserServiceImplTest.java:testUpdateUser()` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| --- | --- | --- | --- | --- |
-| US-08 | 触发 `testUpdateUser()` 执行逻辑 | 验证状态流转与DAO调用正确 | 验证通过，DAO交互断言无异常 | 正确 |
+| -------- | -------- | -------- | -------- | ---- |
+| US-08 | 触发 `testUpdateUser()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
 
 #### 相关代码片段
 ```java
@@ -180,16 +164,14 @@ void testUpdateUser() {
         verify(userDao).save(user);
 ```
 
-### US-09 : 测试 countUserID(String userID)
+### US-09
 
-| 属性 | 对应值 |
-| --- | --- |
-| **测试对象** | `src.main.java.com.demo.service.impl.UserServiceImpl.java:countUserID(String userID)` |
-| **测试函数** | `src.test.java.com.demo.service.impl.UserServiceImplTest.java:testCountUserID()` |
-
+| 测试对象 | `src.main.java.com.demo.service.impl.UserServiceImpl.java:countUserID(String userID)` |
+| -------- | ------------------------------------------------------------ |
+| 测试函数 | `src.test.java.com.demo.service.impl.UserServiceImplTest.java:testCountUserID()` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| --- | --- | --- | --- | --- |
-| US-09 | 触发 `testCountUserID()` 执行逻辑 | 验证状态流转与DAO调用正确 | 验证通过，DAO交互断言无异常 | 正确 |
+| -------- | -------- | -------- | -------- | ---- |
+| US-09 | 触发 `testCountUserID()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
 
 #### 相关代码片段
 ```java
@@ -203,16 +185,14 @@ void testCountUserID() {
 
 ## 2. OrderServiceImpl
 
-### OS-01 : 测试 findById(int OrderID)
+### OS-01
 
-| 属性 | 对应值 |
-| --- | --- |
-| **测试对象** | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:findById(int OrderID)` |
-| **测试函数** | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testFindById()` |
-
+| 测试对象 | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:findById(int OrderID)` |
+| -------- | ------------------------------------------------------------ |
+| 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testFindById()` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| --- | --- | --- | --- | --- |
-| OS-01 | 触发 `testFindById()` 执行逻辑 | 验证状态流转与DAO调用正确 | 验证通过，DAO交互断言无异常 | 正确 |
+| -------- | -------- | -------- | -------- | ---- |
+| OS-01 | 触发 `testFindById()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
 
 #### 相关代码片段
 ```java
@@ -226,16 +206,14 @@ void testFindById() {
         verify(orderDao).getOne(1);
 ```
 
-### OS-02 : 测试 findDateOrder(int venueID, LocalDateTime startTime, LocalDateTime startTime2)
+### OS-02
 
-| 属性 | 对应值 |
-| --- | --- |
-| **测试对象** | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:findDateOrder(int venueID, LocalDateTime startTime, LocalDateTime startTime2)` |
-| **测试函数** | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testFindDateOrder()` |
-
+| 测试对象 | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:findDateOrder(int venueID, LocalDateTime startTime, LocalDateTime startTime2)` |
+| -------- | ------------------------------------------------------------ |
+| 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testFindDateOrder()` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| --- | --- | --- | --- | --- |
-| OS-02 | 触发 `testFindDateOrder()` 执行逻辑 | 验证状态流转与DAO调用正确 | 验证通过，DAO交互断言无异常 | 正确 |
+| -------- | -------- | -------- | -------- | ---- |
+| OS-02 | 触发 `testFindDateOrder()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
 
 #### 相关代码片段
 ```java
@@ -251,16 +229,14 @@ void testFindDateOrder() {
         verify(orderDao).findByVenueIDAndStartTimeIsBetween(2, start, end);
 ```
 
-### OS-03 : 测试 findUserOrder(String userID, Pageable pageable)
+### OS-03
 
-| 属性 | 对应值 |
-| --- | --- |
-| **测试对象** | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:findUserOrder(String userID, Pageable pageable)` |
-| **测试函数** | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testFindUserOrder()` |
-
+| 测试对象 | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:findUserOrder(String userID, Pageable pageable)` |
+| -------- | ------------------------------------------------------------ |
+| 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testFindUserOrder()` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| --- | --- | --- | --- | --- |
-| OS-03 | 触发 `testFindUserOrder()` 执行逻辑 | 验证状态流转与DAO调用正确 | 验证通过，DAO交互断言无异常 | 正确 |
+| -------- | -------- | -------- | -------- | ---- |
+| OS-03 | 触发 `testFindUserOrder()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
 
 #### 相关代码片段
 ```java
@@ -275,16 +251,14 @@ void testFindUserOrder() {
         verify(orderDao).findAllByUserID("u1", pageable);
 ```
 
-### OS-04 : 测试 updateOrder(int orderID, String venueName, LocalDateTime startTime, int hours, String userID)
+### OS-04
 
-| 属性 | 对应值 |
-| --- | --- |
-| **测试对象** | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:updateOrder(int orderID, String venueName, LocalDateTime startTime, int hours, String userID)` |
-| **测试函数** | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testUpdateOrder()` |
-
+| 测试对象 | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:updateOrder(int orderID, String venueName, LocalDateTime startTime, int hours, String userID)` |
+| -------- | ------------------------------------------------------------ |
+| 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testUpdateOrder()` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| --- | --- | --- | --- | --- |
-| OS-04 | 触发 `testUpdateOrder()` 执行逻辑 | 验证状态流转与DAO调用正确 | 验证通过，DAO交互断言无异常 | 正确 |
+| -------- | -------- | -------- | -------- | ---- |
+| OS-04 | 触发 `testUpdateOrder()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
 
 #### 相关代码片段
 ```java
@@ -307,16 +281,14 @@ void testUpdateOrder() {
         verify(orderDao).save(order);
 ```
 
-### OS-05 : 测试 submit(String venueName, LocalDateTime startTime, int hours, String userID)
+### OS-05
 
-| 属性 | 对应值 |
-| --- | --- |
-| **测试对象** | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:submit(String venueName, LocalDateTime startTime, int hours, String userID)` |
-| **测试函数** | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testSubmit()` |
-
+| 测试对象 | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:submit(String venueName, LocalDateTime startTime, int hours, String userID)` |
+| -------- | ------------------------------------------------------------ |
+| 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testSubmit()` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| --- | --- | --- | --- | --- |
-| OS-05 | 触发 `testSubmit()` 执行逻辑 | 验证状态流转与DAO调用正确 | 验证通过，DAO交互断言无异常 | 正确 |
+| -------- | -------- | -------- | -------- | ---- |
+| OS-05 | 触发 `testSubmit()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
 
 #### 相关代码片段
 ```java
@@ -332,16 +304,14 @@ void testSubmit() {
         verify(orderDao).save(any(Order.class));
 ```
 
-### OS-06 : 测试 delOrder(int orderID)
+### OS-06
 
-| 属性 | 对应值 |
-| --- | --- |
-| **测试对象** | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:delOrder(int orderID)` |
-| **测试函数** | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testDelOrder()` |
-
+| 测试对象 | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:delOrder(int orderID)` |
+| -------- | ------------------------------------------------------------ |
+| 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testDelOrder()` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| --- | --- | --- | --- | --- |
-| OS-06 | 触发 `testDelOrder()` 执行逻辑 | 验证状态流转与DAO调用正确 | 验证通过，DAO交互断言无异常 | 正确 |
+| -------- | -------- | -------- | -------- | ---- |
+| OS-06 | 触发 `testDelOrder()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
 
 #### 相关代码片段
 ```java
@@ -351,16 +321,14 @@ void testDelOrder() {
         verify(orderDao).deleteById(1);
 ```
 
-### OS-07 : 测试 confirmOrder(int orderID)
+### OS-07
 
-| 属性 | 对应值 |
-| --- | --- |
-| **测试对象** | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:confirmOrder(int orderID)` |
-| **测试函数** | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testConfirmOrder_Exists()` |
-
+| 测试对象 | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:confirmOrder(int orderID)` |
+| -------- | ------------------------------------------------------------ |
+| 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testConfirmOrder_Exists()` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| --- | --- | --- | --- | --- |
-| OS-07 | 触发 `testConfirmOrder_Exists()` 执行逻辑 | 验证状态流转与DAO调用正确 | 验证通过，DAO交互断言无异常 | 正确 |
+| -------- | -------- | -------- | -------- | ---- |
+| OS-07 | 触发 `testConfirmOrder_Exists()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
 
 #### 相关代码片段
 ```java
@@ -373,16 +341,14 @@ void testConfirmOrder_Exists() {
         verify(orderDao).updateState(OrderService.STATE_WAIT, 1);
 ```
 
-### OS-08 : 测试 confirmOrder(int orderID)
+### OS-08
 
-| 属性 | 对应值 |
-| --- | --- |
-| **测试对象** | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:confirmOrder(int orderID)` |
-| **测试函数** | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testConfirmOrder_NotExists()` |
-
+| 测试对象 | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:confirmOrder(int orderID)` |
+| -------- | ------------------------------------------------------------ |
+| 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testConfirmOrder_NotExists()` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| --- | --- | --- | --- | --- |
-| OS-08 | 触发 `testConfirmOrder_NotExists()` 执行逻辑 | 验证状态流转与DAO调用正确 | 验证通过，DAO交互断言无异常 | 正确 |
+| -------- | -------- | -------- | -------- | ---- |
+| OS-08 | 触发 `testConfirmOrder_NotExists()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
 
 #### 相关代码片段
 ```java
@@ -393,16 +359,14 @@ void testConfirmOrder_NotExists() {
         verify(orderDao, never()).updateState(any(Integer.class), any(Integer.class));
 ```
 
-### OS-09 : 测试 finishOrder(int orderID)
+### OS-09
 
-| 属性 | 对应值 |
-| --- | --- |
-| **测试对象** | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:finishOrder(int orderID)` |
-| **测试函数** | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testFinishOrder_Exists()` |
-
+| 测试对象 | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:finishOrder(int orderID)` |
+| -------- | ------------------------------------------------------------ |
+| 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testFinishOrder_Exists()` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| --- | --- | --- | --- | --- |
-| OS-09 | 触发 `testFinishOrder_Exists()` 执行逻辑 | 验证状态流转与DAO调用正确 | 验证通过，DAO交互断言无异常 | 正确 |
+| -------- | -------- | -------- | -------- | ---- |
+| OS-09 | 触发 `testFinishOrder_Exists()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
 
 #### 相关代码片段
 ```java
@@ -415,16 +379,14 @@ void testFinishOrder_Exists() {
         verify(orderDao).updateState(OrderService.STATE_FINISH, 1);
 ```
 
-### OS-10 : 测试 finishOrder(int orderID)
+### OS-10
 
-| 属性 | 对应值 |
-| --- | --- |
-| **测试对象** | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:finishOrder(int orderID)` |
-| **测试函数** | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testFinishOrder_NotExists()` |
-
+| 测试对象 | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:finishOrder(int orderID)` |
+| -------- | ------------------------------------------------------------ |
+| 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testFinishOrder_NotExists()` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| --- | --- | --- | --- | --- |
-| OS-10 | 触发 `testFinishOrder_NotExists()` 执行逻辑 | 验证状态流转与DAO调用正确 | 验证通过，DAO交互断言无异常 | 正确 |
+| -------- | -------- | -------- | -------- | ---- |
+| OS-10 | 触发 `testFinishOrder_NotExists()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
 
 #### 相关代码片段
 ```java
@@ -434,16 +396,14 @@ void testFinishOrder_NotExists() {
         assertThrows(RuntimeException.class, () -> orderService.finishOrder(2));
 ```
 
-### OS-11 : 测试 rejectOrder(int orderID)
+### OS-11
 
-| 属性 | 对应值 |
-| --- | --- |
-| **测试对象** | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:rejectOrder(int orderID)` |
-| **测试函数** | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testRejectOrder_Exists()` |
-
+| 测试对象 | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:rejectOrder(int orderID)` |
+| -------- | ------------------------------------------------------------ |
+| 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testRejectOrder_Exists()` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| --- | --- | --- | --- | --- |
-| OS-11 | 触发 `testRejectOrder_Exists()` 执行逻辑 | 验证状态流转与DAO调用正确 | 验证通过，DAO交互断言无异常 | 正确 |
+| -------- | -------- | -------- | -------- | ---- |
+| OS-11 | 触发 `testRejectOrder_Exists()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
 
 #### 相关代码片段
 ```java
@@ -456,16 +416,14 @@ void testRejectOrder_Exists() {
         verify(orderDao).updateState(OrderService.STATE_REJECT, 1);
 ```
 
-### OS-12 : 测试 rejectOrder(int orderID)
+### OS-12
 
-| 属性 | 对应值 |
-| --- | --- |
-| **测试对象** | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:rejectOrder(int orderID)` |
-| **测试函数** | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testRejectOrder_NotExists()` |
-
+| 测试对象 | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:rejectOrder(int orderID)` |
+| -------- | ------------------------------------------------------------ |
+| 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testRejectOrder_NotExists()` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| --- | --- | --- | --- | --- |
-| OS-12 | 触发 `testRejectOrder_NotExists()` 执行逻辑 | 验证状态流转与DAO调用正确 | 验证通过，DAO交互断言无异常 | 正确 |
+| -------- | -------- | -------- | -------- | ---- |
+| OS-12 | 触发 `testRejectOrder_NotExists()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
 
 #### 相关代码片段
 ```java
@@ -475,16 +433,14 @@ void testRejectOrder_NotExists() {
         assertThrows(RuntimeException.class, () -> orderService.rejectOrder(2));
 ```
 
-### OS-13 : 测试 findNoAuditOrder(Pageable pageable)
+### OS-13
 
-| 属性 | 对应值 |
-| --- | --- |
-| **测试对象** | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:findNoAuditOrder(Pageable pageable)` |
-| **测试函数** | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testFindNoAuditOrder()` |
-
+| 测试对象 | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:findNoAuditOrder(Pageable pageable)` |
+| -------- | ------------------------------------------------------------ |
+| 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testFindNoAuditOrder()` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| --- | --- | --- | --- | --- |
-| OS-13 | 触发 `testFindNoAuditOrder()` 执行逻辑 | 验证状态流转与DAO调用正确 | 验证通过，DAO交互断言无异常 | 正确 |
+| -------- | -------- | -------- | -------- | ---- |
+| OS-13 | 触发 `testFindNoAuditOrder()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
 
 #### 相关代码片段
 ```java
@@ -499,16 +455,14 @@ void testFindNoAuditOrder() {
         verify(orderDao).findAllByState(OrderService.STATE_NO_AUDIT, pageable);
 ```
 
-### OS-14 : 测试 findAuditOrder()
+### OS-14
 
-| 属性 | 对应值 |
-| --- | --- |
-| **测试对象** | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:findAuditOrder()` |
-| **测试函数** | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testFindAuditOrder()` |
-
+| 测试对象 | `src.main.java.com.demo.service.impl.OrderServiceImpl.java:findAuditOrder()` |
+| -------- | ------------------------------------------------------------ |
+| 测试函数 | `src.test.java.com.demo.service.impl.OrderServiceImplTest.java:testFindAuditOrder()` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| --- | --- | --- | --- | --- |
-| OS-14 | 触发 `testFindAuditOrder()` 执行逻辑 | 验证状态流转与DAO调用正确 | 验证通过，DAO交互断言无异常 | 正确 |
+| -------- | -------- | -------- | -------- | ---- |
+| OS-14 | 触发 `testFindAuditOrder()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
 
 #### 相关代码片段
 ```java
@@ -524,16 +478,14 @@ void testFindAuditOrder() {
 
 ## 3. OrderVoServiceImpl
 
-### OVS-01 : 测试 returnOrderVoByOrderID(int orderID)
+### OVS-01
 
-| 属性 | 对应值 |
-| --- | --- |
-| **测试对象** | `src.main.java.com.demo.service.impl.OrderVoServiceImpl.java:returnOrderVoByOrderID(int orderID)` |
-| **测试函数** | `src.test.java.com.demo.service.impl.OrderVoServiceImplTest.java:testReturnOrderVoByOrderID()` |
-
+| 测试对象 | `src.main.java.com.demo.service.impl.OrderVoServiceImpl.java:returnOrderVoByOrderID(int orderID)` |
+| -------- | ------------------------------------------------------------ |
+| 测试函数 | `src.test.java.com.demo.service.impl.OrderVoServiceImplTest.java:testReturnOrderVoByOrderID()` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| --- | --- | --- | --- | --- |
-| OVS-01 | 触发 `testReturnOrderVoByOrderID()` 执行逻辑 | 验证状态流转与DAO调用正确 | 验证通过，DAO交互断言无异常 | 正确 |
+| -------- | -------- | -------- | -------- | ---- |
+| OVS-01 | 触发 `testReturnOrderVoByOrderID()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
 
 #### 相关代码片段
 ```java
@@ -561,16 +513,14 @@ void testReturnOrderVoByOrderID() {
         verify(venueDao).findByVenueID(2);
 ```
 
-### OVS-02 : 测试 returnVo(List<Order> list)
+### OVS-02
 
-| 属性 | 对应值 |
-| --- | --- |
-| **测试对象** | `src.main.java.com.demo.service.impl.OrderVoServiceImpl.java:returnVo(List<Order> list)` |
-| **测试函数** | `src.test.java.com.demo.service.impl.OrderVoServiceImplTest.java:testReturnVoList()` |
-
+| 测试对象 | `src.main.java.com.demo.service.impl.OrderVoServiceImpl.java:returnVo(List<Order> list)` |
+| -------- | ------------------------------------------------------------ |
+| 测试函数 | `src.test.java.com.demo.service.impl.OrderVoServiceImplTest.java:testReturnVoList()` |
 | 用例编号 | 用例描述 | 预期结果 | 测试结果 | 结论 |
-| --- | --- | --- | --- | --- |
-| OVS-02 | 触发 `testReturnVoList()` 执行逻辑 | 验证状态流转与DAO调用正确 | 验证通过，DAO交互断言无异常 | 正确 |
+| -------- | -------- | -------- | -------- | ---- |
+| OVS-02 | 触发 `testReturnVoList()` 执行逻辑 | 验证交互与功能 | 验证通过 | 正确 |
 
 #### 相关代码片段
 ```java
