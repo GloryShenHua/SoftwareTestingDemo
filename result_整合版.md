@@ -584,7 +584,7 @@ verify(newsDao).save(news);
 
 ---
 
-# 二、单元测试用例 (ZLY补充部分)
+# 二、单元测试用例 
 
 
 | 项目 | 结果 |
@@ -616,7 +616,7 @@ verify(newsDao).save(news);
 
 ### 相关代码片段
 
-#### testFindByUserID_WhenUserExists
+#### US-01 (testFindByUserID_WhenUserExists)
 ```java
 // Test: testFindByUserID_WhenUserExists
 void testFindByUserID_WhenUserExists() {
@@ -628,7 +628,7 @@ void testFindByUserID_WhenUserExists() {
         verify(userDao).findByUserID("test_user");
 ```
 
-#### testFindById_WhenUserExists
+#### US-02 (testFindById_WhenUserExists)
 ```java
 // Test: testFindById_WhenUserExists
 void testFindById_WhenUserExists() {
@@ -640,7 +640,7 @@ void testFindById_WhenUserExists() {
         verify(userDao).findById(1);
 ```
 
-#### testFindByUserIDPageable
+#### US-03 (testFindByUserIDPageable)
 ```java
 // Test: testFindByUserIDPageable
 void testFindByUserIDPageable() {
@@ -653,7 +653,7 @@ void testFindByUserIDPageable() {
         verify(userDao).findAllByIsadmin(0, pageable);
 ```
 
-#### testCheckLogin_Success
+#### US-04 (testCheckLogin_Success)
 ```java
 // Test: testCheckLogin_Success
 void testCheckLogin_Success() {
@@ -665,7 +665,7 @@ void testCheckLogin_Success() {
         verify(userDao).findByUserIDAndPassword("user", "pass");
 ```
 
-#### testCheckLogin_Fail
+#### US-05 (testCheckLogin_Fail)
 ```java
 // Test: testCheckLogin_Fail
 void testCheckLogin_Fail() {
@@ -676,7 +676,7 @@ void testCheckLogin_Fail() {
         verify(userDao).findByUserIDAndPassword("user", "wrong");
 ```
 
-#### testCreate
+#### US-06 (testCreate)
 ```java
 // Test: testCreate
 void testCreate() {
@@ -689,7 +689,7 @@ void testCreate() {
         verify(userDao).findAll();
 ```
 
-#### testDelByID
+#### US-07 (testDelByID)
 ```java
 // Test: testDelByID
 void testDelByID() {
@@ -697,7 +697,7 @@ void testDelByID() {
         verify(userDao).deleteById(1);
 ```
 
-#### testUpdateUser
+#### US-08 (testUpdateUser)
 ```java
 // Test: testUpdateUser
 void testUpdateUser() {
@@ -706,7 +706,7 @@ void testUpdateUser() {
         verify(userDao).save(user);
 ```
 
-#### testCountUserID
+#### US-09 (testCountUserID)
 ```java
 // Test: testCountUserID
 void testCountUserID() {
@@ -740,7 +740,7 @@ void testCountUserID() {
 
 ### 相关代码片段
 
-#### testFindById
+#### OS-01 (testFindById)
 ```java
 // Test: testFindById
 void testFindById() {
@@ -752,7 +752,7 @@ void testFindById() {
         verify(orderDao).getOne(1);
 ```
 
-#### testFindDateOrder
+#### OS-02 (testFindDateOrder)
 ```java
 // Test: testFindDateOrder
 void testFindDateOrder() {
@@ -766,7 +766,7 @@ void testFindDateOrder() {
         verify(orderDao).findByVenueIDAndStartTimeIsBetween(2, start, end);
 ```
 
-#### testFindUserOrder
+#### OS-03 (testFindUserOrder)
 ```java
 // Test: testFindUserOrder
 void testFindUserOrder() {
@@ -779,7 +779,7 @@ void testFindUserOrder() {
         verify(orderDao).findAllByUserID("u1", pageable);
 ```
 
-#### testUpdateOrder
+#### OS-04 (testUpdateOrder)
 ```java
 // Test: testUpdateOrder
 void testUpdateOrder() {
@@ -800,7 +800,7 @@ void testUpdateOrder() {
         verify(orderDao).save(order);
 ```
 
-#### testSubmit
+#### OS-05 (testSubmit)
 ```java
 // Test: testSubmit
 void testSubmit() {
@@ -814,7 +814,7 @@ void testSubmit() {
         verify(orderDao).save(any(Order.class));
 ```
 
-#### testDelOrder
+#### OS-06 (testDelOrder)
 ```java
 // Test: testDelOrder
 void testDelOrder() {
@@ -822,7 +822,7 @@ void testDelOrder() {
         verify(orderDao).deleteById(1);
 ```
 
-#### testConfirmOrder_Exists
+#### OS-07 (testConfirmOrder_Exists)
 ```java
 // Test: testConfirmOrder_Exists
 void testConfirmOrder_Exists() {
@@ -833,7 +833,7 @@ void testConfirmOrder_Exists() {
         verify(orderDao).updateState(OrderService.STATE_WAIT, 1);
 ```
 
-#### testConfirmOrder_NotExists
+#### OS-08 (testConfirmOrder_NotExists)
 ```java
 // Test: testConfirmOrder_NotExists
 void testConfirmOrder_NotExists() {
@@ -842,7 +842,7 @@ void testConfirmOrder_NotExists() {
         verify(orderDao, never()).updateState(any(Integer.class), any(Integer.class));
 ```
 
-#### testFinishOrder_Exists
+#### OS-09 (testFinishOrder_Exists)
 ```java
 // Test: testFinishOrder_Exists
 void testFinishOrder_Exists() {
@@ -853,7 +853,7 @@ void testFinishOrder_Exists() {
         verify(orderDao).updateState(OrderService.STATE_FINISH, 1);
 ```
 
-#### testFinishOrder_NotExists
+#### OS-10 (testFinishOrder_NotExists)
 ```java
 // Test: testFinishOrder_NotExists
 void testFinishOrder_NotExists() {
@@ -861,7 +861,7 @@ void testFinishOrder_NotExists() {
         assertThrows(RuntimeException.class, () -> orderService.finishOrder(2));
 ```
 
-#### testRejectOrder_Exists
+#### OS-11 (testRejectOrder_Exists)
 ```java
 // Test: testRejectOrder_Exists
 void testRejectOrder_Exists() {
@@ -872,7 +872,7 @@ void testRejectOrder_Exists() {
         verify(orderDao).updateState(OrderService.STATE_REJECT, 1);
 ```
 
-#### testRejectOrder_NotExists
+#### OS-12 (testRejectOrder_NotExists)
 ```java
 // Test: testRejectOrder_NotExists
 void testRejectOrder_NotExists() {
@@ -880,7 +880,7 @@ void testRejectOrder_NotExists() {
         assertThrows(RuntimeException.class, () -> orderService.rejectOrder(2));
 ```
 
-#### testFindNoAuditOrder
+#### OS-13 (testFindNoAuditOrder)
 ```java
 // Test: testFindNoAuditOrder
 void testFindNoAuditOrder() {
@@ -893,7 +893,7 @@ void testFindNoAuditOrder() {
         verify(orderDao).findAllByState(OrderService.STATE_NO_AUDIT, pageable);
 ```
 
-#### testFindAuditOrder
+#### OS-14 (testFindAuditOrder)
 ```java
 // Test: testFindAuditOrder
 void testFindAuditOrder() {
@@ -917,7 +917,7 @@ void testFindAuditOrder() {
 
 ### 相关代码片段
 
-#### testReturnOrderVoByOrderID
+#### OVS-01 (testReturnOrderVoByOrderID)
 ```java
 // Test: testReturnOrderVoByOrderID
 void testReturnOrderVoByOrderID() {
@@ -943,7 +943,7 @@ void testReturnOrderVoByOrderID() {
         verify(venueDao).findByVenueID(2);
 ```
 
-#### testReturnVoList
+#### OVS-02 (testReturnVoList)
 ```java
 // Test: testReturnVoList
 void testReturnVoList() {
