@@ -128,7 +128,7 @@ INSERT INTO `user` VALUES ('27', 'yonghu', 'mimamima', '', '', '0', '1234', '');
 DROP TABLE IF EXISTS `venue`;
 CREATE TABLE `venue` (
   `venueID` int(5) NOT NULL AUTO_INCREMENT,
-  `description` text,
+  `description` varchar(1000) DEFAULT NULL,
   `price` int(5) DEFAULT NULL,
   `picture` varchar(255) DEFAULT NULL,
   `venue_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
