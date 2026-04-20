@@ -17,6 +17,8 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.util.NestedServletException;
 
+import org.mockito.ArgumentCaptor;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -223,5 +225,58 @@ class AdminVenueControllerIntegrationTest {
         mockMvc.perform(post("/checkVenueName.do").param("venueName", "Z馆"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("true"));
+    }
+
+    @Test
+    @DisplayName("POST /addVenue.do: 判定覆盖-图片文件名非空时应保存图片路径并重定向venue_manage")
+    void addVenueShouldSavePictureWhenFileNameNotEmpty() throws Exception {
+        when(venueService.create(any(Venue.class))).thenReturn(1);
+        MockMultipartFile picture = new MockMultipartFile(
+                "picture", "venue.jpg", "image/jpeg", "fake-image-data".getBytes());
+
+        mockMvc.perform(multipart("/addVenue.do")
+                        .file(picture)
+                        .param("venueName", "白盒测试馆")
+                        .param("address", "白盒地址")
+                        .param("description", "白盒描述")
+                        .param("price", "100")
+                        .param("open_time", "08:00")
+                        .param("close_time", "22:00"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(header().string("Location", "venue_manage"));
+
+        ArgumentCaptor<Venue> captor = ArgumentCaptor.forClass(Venue.class);
+        verify(venueService).create(captor.capture());
+        org.junit.jupiter.api.Assertions.assertTrue(
+                captor.getValue().getPicture().startsWith("file/venue/"),
+                "图片路径应以 file/venue/ 开头，实际为: " + captor.getValue().getPicture());
+    }
+
+    @Test
+    @DisplayName("POST /modifyVenue.do: 判定覆盖-图片文件名非空时应更新图片路径并重定向venue_manage")
+    void modifyVenueShouldUpdatePictureWhenFileNameNotEmpty() throws Exception {
+        Venue old = new Venue(6, "旧馆", "旧描述", 100, "old.png", "旧地址", "09:00", "21:00");
+        when(venueService.findByVenueID(6)).thenReturn(old);
+        doNothing().when(venueService).update(any(Venue.class));
+        MockMultipartFile picture = new MockMultipartFile(
+                "picture", "new.jpg", "image/jpeg", "new-image-data".getBytes());
+
+        mockMvc.perform(multipart("/modifyVenue.do")
+                        .file(picture)
+                        .param("venueID", "6")
+                        .param("venueName", "新馆名")
+                        .param("address", "新地址")
+                        .param("description", "新描述")
+                        .param("price", "150")
+                        .param("open_time", "08:00")
+                        .param("close_time", "23:00"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(header().string("Location", "venue_manage"));
+
+        ArgumentCaptor<Venue> captor = ArgumentCaptor.forClass(Venue.class);
+        verify(venueService).update(captor.capture());
+        org.junit.jupiter.api.Assertions.assertTrue(
+                captor.getValue().getPicture().startsWith("file/venue/"),
+                "修改时图片路径应以 file/venue/ 开头，实际为: " + captor.getValue().getPicture());
     }
 }

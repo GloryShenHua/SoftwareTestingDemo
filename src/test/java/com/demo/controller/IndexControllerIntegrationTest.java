@@ -23,7 +23,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import org.mockito.InOrder;
+
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -111,5 +114,28 @@ class IndexControllerIntegrationTest {
         mockMvc.perform(get("/admin_index"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("admin/admin_index"));
+    }
+
+    @Test
+    @DisplayName("GET /index: 语句覆盖-验证四个服务方法按代码顺序依次调用且model.user=null")
+    void indexShouldInvokeAllServicesInOrderAndSetNullUser() throws Exception {
+        when(venueService.findAll(any(Pageable.class)))
+                .thenReturn(new PageImpl<>(Collections.emptyList()));
+        when(newsService.findAll(any(Pageable.class)))
+                .thenReturn(new PageImpl<>(Collections.emptyList()));
+        when(messageService.findPassState(any(Pageable.class)))
+                .thenReturn(new PageImpl<>(Collections.emptyList()));
+        when(messageVoService.returnVo(Collections.emptyList()))
+                .thenReturn(Collections.emptyList());
+
+        mockMvc.perform(get("/index"))
+                .andExpect(status().isOk())
+                .andExpect(model().attribute("user", (Object) null));
+
+        InOrder inOrder = inOrder(venueService, newsService, messageService, messageVoService);
+        inOrder.verify(venueService).findAll(any(Pageable.class));
+        inOrder.verify(newsService).findAll(any(Pageable.class));
+        inOrder.verify(messageService).findPassState(any(Pageable.class));
+        inOrder.verify(messageVoService).returnVo(Collections.emptyList());
     }
 }

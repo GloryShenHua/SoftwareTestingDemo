@@ -23,7 +23,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import org.mockito.ArgumentCaptor;
+
 import static org.hamcrest.Matchers.hasSize;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
@@ -161,5 +164,21 @@ class AdminOrderControllerIntegrationTest {
                 () -> mockMvc.perform(post("/passOrder.do"))
         );
         assertTrue(exception.getCause() instanceof IllegalStateException);
+    }
+
+    @Test
+    @DisplayName("GET /admin/getOrderList.do: 语句覆盖-验证PageRequest.of(page-1,10,降序)语句执行，pageNumber=0且pageSize=10")
+    void getNoAuditOrderShouldPassCorrectPageableToService() throws Exception {
+        ArgumentCaptor<Pageable> captor = ArgumentCaptor.forClass(Pageable.class);
+        when(orderService.findNoAuditOrder(captor.capture()))
+                .thenReturn(new PageImpl<>(Collections.emptyList(), PageRequest.of(0, 10), 0));
+        when(orderVoService.returnVo(Collections.emptyList())).thenReturn(Collections.emptyList());
+
+        mockMvc.perform(get("/admin/getOrderList.do").param("page", "1"))
+                .andExpect(status().isOk());
+
+        Pageable captured = captor.getValue();
+        assertEquals(0, captured.getPageNumber(), "page=1 时 PageRequest.of(page-1,...) 应计算出 pageNumber=0");
+        assertEquals(10, captured.getPageSize(), "每页应固定为10条");
     }
 }

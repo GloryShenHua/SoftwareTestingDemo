@@ -22,7 +22,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import org.mockito.ArgumentCaptor;
+
 import static org.hamcrest.Matchers.hasSize;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
@@ -150,5 +153,21 @@ class AdminMessageControllerIntegrationTest {
                 .andExpect(content().string("true"));
 
         verify(messageService).delById(eq(200));
+    }
+
+
+    @Test
+    @DisplayName("GET /message_manage: 语句覆盖-验证PageRequest.of(0,10,降序)语句执行，即分页参数pageNumber=0且pageSize=10")
+    void messageManageShouldPassCorrectPageableToService() throws Exception {
+        ArgumentCaptor<Pageable> captor = ArgumentCaptor.forClass(Pageable.class);
+        when(messageService.findWaitState(captor.capture()))
+                .thenReturn(new PageImpl<>(Collections.emptyList(), Pageable.unpaged(), 0));
+
+        mockMvc.perform(get("/message_manage"))
+                .andExpect(status().isOk());
+
+        Pageable captured = captor.getValue();
+        assertEquals(0, captured.getPageNumber(), "message_manage 中 PageRequest.of(0,10,...) 第一页应为0");
+        assertEquals(10, captured.getPageSize(), "message_manage 中 PageRequest.of(0,10,...) 每页10条");
     }
 }
