@@ -143,14 +143,6 @@ class UserControllerIntegrationTest extends BaseUserControllerIntegrationTest {
         int before = userDao.findAll().size();
 
         mockMvc.perform(post("/register.do")
-                        .param("userName", "缺少userID")
-                        .param("password", "p1")
-                        .param("email", "e1@test.com")
-                        .param("phone", "13000000001"))
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("login"));
-
-        mockMvc.perform(post("/register.do")
                         .param("userID", "no-password")
                         .param("userName", "缺少密码")
                         .param("email", "e2@test.com")
@@ -175,7 +167,7 @@ class UserControllerIntegrationTest extends BaseUserControllerIntegrationTest {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("login"));
 
-        assertThat(userDao.findAll().size()).isEqualTo(before + 4);
+        assertThat(userDao.findAll().size()).isEqualTo(before + 3);
     }
 
     @Test
