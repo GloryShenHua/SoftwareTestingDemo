@@ -34,6 +34,8 @@ node_modules/
 # Environment
 .env
 src/main/resources/application.yml
+application.yml
 
 resources/
 LOCAL_RUN.md
+generate_test_design_doc.py

@@ -20,7 +20,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import org.mockito.ArgumentCaptor;
+
 import static org.hamcrest.Matchers.hasSize;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
@@ -200,4 +203,48 @@ class AdminUserControllerIntegrationTest {
         );
         assertTrue(exception.getCause() instanceof IllegalStateException);
     }
+
+    @Test
+    @DisplayName("POST /addUser.do: 语句覆盖-验证user.setPicture(\"\")语句已执行（picture字段初始化为空字符串）")
+    void addUserShouldSetEmptyPictureField() throws Exception {
+        ArgumentCaptor<User> captor = ArgumentCaptor.forClass(User.class);
+        when(userService.create(captor.capture())).thenReturn(1);
+
+        mockMvc.perform(post("/addUser.do")
+                        .param("userID", "wb001")
+                        .param("userName", "WhiteBox")
+                        .param("password", "pwd001")
+                        .param("email", "wb@demo.com")
+                        .param("phone", "13300001111"))
+                .andExpect(status().is3xxRedirection());
+
+        assertEquals("", captor.getValue().getPicture(),
+                "addUser 中 user.setPicture(\"\") 语句应将图片字段初始化为空字符串");
+    }
+
+    @Test
+    @DisplayName("POST /modifyUser.do: 语句覆盖-验证五条setXXX语句均对User对象正确赋值")
+    void modifyUserShouldSetAllFieldsFromRequest() throws Exception {
+        User existing = new User(9, "old01", "OldName", "oldpwd", "old@demo.com", "13300001111", 0, "");
+        when(userService.findByUserID("old01")).thenReturn(existing);
+        ArgumentCaptor<User> captor = ArgumentCaptor.forClass(User.class);
+        doNothing().when(userService).updateUser(captor.capture());
+
+        mockMvc.perform(post("/modifyUser.do")
+                        .param("userID", "new01")
+                        .param("oldUserID", "old01")
+                        .param("userName", "NewName")
+                        .param("password", "newpwd")
+                        .param("email", "new@demo.com")
+                        .param("phone", "13399991111"))
+                .andExpect(status().is3xxRedirection());
+
+        User updated = captor.getValue();
+        assertEquals("new01", updated.getUserID());
+        assertEquals("NewName", updated.getUserName());
+        assertEquals("newpwd", updated.getPassword());
+        assertEquals("new@demo.com", updated.getEmail());
+        assertEquals("13399991111", updated.getPhone());
+    }
+
 }

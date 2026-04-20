@@ -20,7 +20,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import org.mockito.ArgumentCaptor;
+
 import static org.hamcrest.Matchers.hasSize;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
@@ -177,5 +181,44 @@ class AdminNewsControllerIntegrationTest {
                         .param("content", "c"))
         );
         assertTrue(exception.getCause() instanceof IllegalStateException);
+    }
+
+    @Test
+    @DisplayName("POST /addNews.do: 语句覆盖-验证News对象title/content/time字段均被赋值后调用create")
+    void addNewsShouldSetAllFieldsBeforeCreate() throws Exception {
+        ArgumentCaptor<News> captor = ArgumentCaptor.forClass(News.class);
+        when(newsService.create(captor.capture())).thenReturn(1);
+
+        mockMvc.perform(post("/addNews.do")
+                        .param("title", "白盒标题")
+                        .param("content", "白盒内容"))
+                .andExpect(status().is3xxRedirection());
+
+        News captured = captor.getValue();
+        assertEquals("白盒标题", captured.getTitle());
+        assertEquals("白盒内容", captured.getContent());
+        assertNotNull(captured.getTime(), "time 字段应由 setTime(LocalDateTime.now()) 语句赋值，不应为 null");
+    }
+
+    @Test
+    @DisplayName("POST /modifyNews.do: 语句覆盖-验证setTitle/setContent/setTime三条语句均被执行")
+    void modifyNewsShouldUpdateAllFieldsBeforeUpdate() throws Exception {
+        News existing = new News(7, "原标题", "原内容", LocalDateTime.of(2026, 1, 1, 0, 0));
+        when(newsService.findById(7)).thenReturn(existing);
+        ArgumentCaptor<News> captor = ArgumentCaptor.forClass(News.class);
+        doNothing().when(newsService).update(captor.capture());
+
+        mockMvc.perform(post("/modifyNews.do")
+                        .param("newsID", "7")
+                        .param("title", "新标题")
+                        .param("content", "新内容"))
+                .andExpect(status().is3xxRedirection());
+
+        News updated = captor.getValue();
+        assertEquals("新标题", updated.getTitle());
+        assertEquals("新内容", updated.getContent());
+        assertNotNull(updated.getTime(), "modifyNews 中 setTime(LocalDateTime.now()) 语句应已执行");
+        assertTrue(updated.getTime().isAfter(LocalDateTime.of(2026, 1, 1, 0, 0)),
+                "更新后的时间应晚于原始时间");
     }
 }
